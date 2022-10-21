@@ -1,10 +1,3 @@
-_G.A = true
-_G.Melee = true
-_G.Def = false
-_G.Sword = false
-_G.DV = false
-
-
 function cl()
     local lv = game:GetService("Players").LocalPlayer.Things.Level.Value
     if lv == 1 or lv <= 9 then
@@ -69,6 +62,79 @@ function cl()
     CF = CFrame.new(-882.083435, 437.623169, 1353.52039, -0.849196136, 9.14564566e-08, -0.528077543, 1.00154438e-07, 1, 1.21302159e-08, 0.528077543, -4.2588379e-08, -0.849196136)
    end
 end
+
+        weapon = {}
+        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v:IsA("Tool") then
+                    table.insert(weapon ,v.Name)
+                end
+            end
+
+    local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/naypramx/Ui__Project/Script/XeNonUi", true))()
+    local CenterHubNo1 = library:CreateWindow("Killer Hub | Master Pirate Kaitun -- Right Control",Enum.KeyCode.RightControl)
+    local Tab = CenterHubNo1:CreateTab("Main")
+    local Sector1 = Tab:CreateSector("Main","left")
+    local Sector2 = Tab:CreateSector("Stats","Right")
+    Sector1:AddLabel("Credit : Killer Hub")
+    Sector1:AddButton("Copy Discord",function(t)
+      setclipboard("https://discord.gg/sZwpnt4QHC")
+    end)
+    
+Sector1:AddButton("Redeem All Code",function(t)
+    function code(Text)
+    game:GetService("ReplicatedStorage").Assets.Remote.RemoteFunction.Code:InvokeServer(Text)
+end
+
+code("PeaKer_Gamer")
+code("xdggjai")
+code("BigUPD")
+code("2kLike")
+code("Xou")
+code("SEA_FOUR")
+code("TONMAI_STUDIO")
+code("UPD1")
+code("JaiJai")
+end)
+
+    Sector1:AddToggle("Starts",false,function(t)
+        _G.A = t
+    end)
+    
+    Sector1:AddToggle("White Screen",false,function(t)
+        _G.WSCR = t
+    end)
+    
+local dropdoxwn = Sector1:AddDropdown("Please Select Your Weapon",weapon,"None",false,function(value)
+    _G.W = value
+end)
+
+    Sector2:AddToggle("Melee",false,function(t)
+        _G.Melee = t
+    end)
+    
+    Sector2:AddToggle("Defense",false,function(t)
+        _G.Def = t
+    end)
+    
+    Sector2:AddToggle("Sword",false,function(t)
+        _G.Sword = t
+    end)
+    
+    Sector2:AddToggle("Devil Fruit",false,function(t)
+        _G.DV = t
+    end)
+        
+        spawn(function()
+       game:GetService("RunService").RenderStepped:Connect(function()
+        pcall(function()
+            if _G.WSCR then
+    game.RunService:Set3dRenderingEnabled(false)
+elseif _G.WSCR == false then
+   game.RunService:Set3dRenderingEnabled(true)
+        end
+        end)
+       end)
+        end)
 
         spawn(function()
        game:GetService("RunService").RenderStepped:Connect(function()
@@ -249,7 +315,7 @@ game:GetService("ReplicatedStorage").Assets.Remote.RemoteEvent.Stats:FireServer(
            game:GetService("RunService").RenderStepped:Connect(function()
             pcall(function()
                 if _G.A then
-                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("FishKarate"))
+                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(_G.W))
                             end
             end)
            end)
